@@ -1,0 +1,5577 @@
+
+<style>
+
+.tab_block .header {
+    flex-direction: row;
+    display: flex;
+}
+
+.tab_block .header .tab {
+    cursor: pointer;
+    background-color: #F6F5F5;
+    text-decoration: none;
+    text-align: center;
+    padding: 4px 12px;
+    color: black;
+}
+
+.tab_block .header .tab.selected {
+    border-bottom: 2px solid #2F80ED;
+}
+
+.tab_block .header .tab:hover {
+    text-decoration: none;
+    background-color: #DCDCDC;
+}
+
+.tab_block .body .tab_content {
+    display: none;
+    padding: 5px;
+}
+
+.tab_block .body .tab_content.selected {
+    display: block;
+}
+
+.ydf_pre {
+    font-size: medium;
+}
+
+
+
+.variable_importance {
+}
+
+.variable_importance select {
+}
+
+.variable_importance .content {
+  display: none;
+}
+
+.variable_importance .content.selected {
+  display: block;
+}
+
+.ydf_tuning_table {
+  border-collapse: collapse;
+  border: 1px solid lightgray;
+}
+
+.ydf_tuning_table th {
+  background-color: #ededed;
+  font-weight: bold;
+  text-align: left;
+  padding: 3px 4px;
+  border: 1px solid lightgray;
+}
+
+.ydf_tuning_table td {
+  text-align: right;
+  padding: 3px 4px;
+  border: 1px solid lightgray;
+}
+
+.ydf_tuning_table .best {
+  background-color: khaki;
+}
+
+</style>
+
+<script>
+
+function ydfShowTab(block_id, item) {
+    const block = document.getElementById(block_id);
+    
+    
+    console.log("HIDE first of:",block.getElementsByClassName("tab selected"));
+    console.log("HIDE first of:",block.getElementsByClassName("tab_content selected"));
+    
+    block.getElementsByClassName("tab selected")[0].classList.remove("selected");
+    block.getElementsByClassName("tab_content selected")[0].classList.remove("selected");
+    document.getElementById(block_id + "_" + item).classList.add("selected");
+    document.getElementById(block_id + "_body_" + item).classList.add("selected");
+}
+  
+
+function ydfShowVariableImportance(block_id) {
+    const block = document.getElementById(block_id);
+    const item = block.getElementsByTagName("select")[0].value;
+    block.getElementsByClassName("content selected")[0].classList.remove("selected");
+    document.getElementById(block_id + "_body_" + item).classList.add("selected");
+}
+
+</script>
+  <div class="tab_block" id="8ada-3ddf-6927-87c4"><div class="header"><a id="8ada-3ddf-6927-87c4_pdp" class="tab selected" onclick="ydfShowTab('8ada-3ddf-6927-87c4', 'pdp')">Partial Dependence Plot</a><a id="8ada-3ddf-6927-87c4_cep" class="tab" onclick="ydfShowTab('8ada-3ddf-6927-87c4', 'cep')">Conditional Expectation Plot</a><a id="8ada-3ddf-6927-87c4_pva" class="tab" onclick="ydfShowTab('8ada-3ddf-6927-87c4', 'pva')">Variable Importances</a></div><div class="body"><div id="8ada-3ddf-6927-87c4_body_pdp" class="tab_content selected"><div style='display: grid; gap: 0px; grid-auto-columns: min-content;'><div style='grid-row:1 / span 1; grid-column:1 / span 1;'><script src='https://www.gstatic.com/external_hosted/plotly/plotly.min.js'></script><div id="chart_8ada_3ddf_6927_87c4_pdp_item0" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item0',
+    [{
+x: [30.25,33,35.25,36.75,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71.5,73.75,75.75,76.75],
+y: [0.419919,0.409161,0.411491,0.40622,0.403383,0.389799,0.413571,0.397679,0.398772,0.410437,0.411499,0.41356,0.414692,0.414646,0.418461,0.426535,0.429845,0.429901,0.432024,0.433501,0.451105,0.463955,0.463314,0.474048,0.4798,0.472746,0.474461,0.476103,0.477365,0.475359,0.479319,0.496431,0.484621,0.485875,0.471496,0.469474,0.482456,0.457661,0.480244,0.510731,0.513915],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Age',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Age',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item0").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:2 / span 1; grid-column:1 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item1" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item1',
+    [{
+x: [30.25,33,35.25,36.75,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71.5,73.75,75.75,76.75],
+y: [0.0266106,0.047619,0.0742297,0.0504202,0.0182073,0.138655,0.0868347,0.544818,0.494398,0.362745,0.572829,0.271709,0.358543,0.161064,0.317927,0.215686,0.392157,0.805322,0.668067,0.334734,0.966387,0.247899,0.533613,0.763305,1,0.682073,0.620448,0.277311,0.588235,0.268908,0.457983,0.392157,0.259104,0.383754,0.0980392,0.0840336,0.137255,0.110644,0.0168067,0.00980392,0.0252101],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [30.25,30.25,33,35.25,36.75,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71.5,73.75,75.75,76.75],
+y: [0,0.00191919,0.00535354,0.0107071,0.0143434,0.0156566,0.0256566,0.0319192,0.0712121,0.106869,0.13303,0.174343,0.193939,0.219798,0.231414,0.254343,0.269899,0.298182,0.356263,0.404444,0.428586,0.498283,0.516162,0.554646,0.609697,0.681818,0.73101,0.775758,0.795758,0.838182,0.857576,0.890606,0.918889,0.937576,0.965253,0.972323,0.978384,0.988283,0.996263,0.997475,0.998182,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Age',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Age',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item1").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:1 / span 1; grid-column:2 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item2" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item2',
+    [{
+x: [0.25,0.75],
+y: [0.387603,0.471275],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Sex',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Sex',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item2").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:2 / span 1; grid-column:2 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item3" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item3',
+    [{
+x: [0.25,0.75],
+y: [0.396727,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [0.25,0.25,0.75],
+y: [0,0.28404,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Sex',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Sex',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item3").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:1 / span 1; grid-column:3 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item4" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item4',
+    [{
+x: [1.25,2,3,3.75],
+y: [0.317657,0.3566,0.367592,0.528507],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Chest pain type',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Chest pain type',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item4").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:2 / span 1; grid-column:3 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item5" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item5',
+    [{
+x: [1.25,2,3,3.75],
+y: [0.0887425,0.224763,0.604728,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [1.25,1.25,2,3,3.75],
+y: [0,0.0462626,0.163434,0.478687,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Chest pain type',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Chest pain type',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item5").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:3 / span 1; grid-column:1 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item6" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item6',
+    [{
+x: [97.25,102.5,105,107,109.5,111.75,114.25,117.25,120,121.75,123.5,125,126,127.5,129.5,131.5,133.5,135,136.25,138,139.75,141.75,144.25,147,149.75,152,154.25,157.25,160,163.75,168.75,172,173.75,176.75,182.5,191,198],
+y: [0.459004,0.457012,0.457618,0.454908,0.452069,0.437193,0.445104,0.446558,0.450371,0.450852,0.455379,0.454611,0.447089,0.447399,0.443799,0.450491,0.458907,0.458544,0.435494,0.43538,0.45978,0.453665,0.455786,0.455007,0.450971,0.450386,0.450477,0.448677,0.450562,0.446983,0.444644,0.440902,0.432887,0.434809,0.430767,0.431952,0.46341],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'BP',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'BP',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item6").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:4 / span 1; grid-column:1 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item7" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item7',
+    [{
+x: [97.25,102.5,105,107,109.5,111.75,114.25,117.25,120,121.75,123.5,125,126,127.5,129.5,131.5,133.5,135,136.25,138,139.75,141.75,144.25,147,149.75,152,154.25,157.25,160,163.75,168.75,172,173.75,176.75,182.5,191,198],
+y: [0.0665914,0.0242664,0.0395034,0.0942438,0.369639,0.161964,0.035553,0.108352,1,0.030474,0.0727991,0.167043,0.037246,0.165914,0.979684,0.112867,0.0536117,0.0846501,0.0389391,0.180023,0.899549,0.0276524,0.0733634,0.00959368,0.400677,0.0411964,0.00959368,0.0124153,0.18623,0.00282167,0.011851,0.00959368,0.00846501,0.0146727,0.0457111,0.00564334,0.00451467],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [97.25,97.25,102.5,105,107,109.5,111.75,114.25,117.25,120,121.75,123.5,125,126,127.5,129.5,131.5,133.5,135,136.25,138,139.75,141.75,144.25,147,149.75,152,154.25,157.25,160,163.75,168.75,172,173.75,176.75,182.5,191,198],
+y: [0,0.0119192,0.0162626,0.0233333,0.040202,0.106364,0.135354,0.141717,0.161111,0.340101,0.345556,0.358586,0.388485,0.395152,0.424848,0.600202,0.620404,0.63,0.645151,0.652121,0.684343,0.845354,0.850303,0.863434,0.865152,0.936869,0.944242,0.94596,0.948182,0.981515,0.98202,0.984141,0.985859,0.987374,0.99,0.998182,0.999192,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'BP',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'BP',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item7").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:3 / span 1; grid-column:2 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item8" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item8',
+    [{
+x: [163.25,187,197,198.5,200.5,203,207,210.5,212,215.5,219,222.5,226,227.5,229,230,231,232.5,234,236.25,238.75,240.25,242.25,244,245,246,248,250.25,252.75,255.5,257.5,261,265,267.5,269,270.75,273.25,278,282,283,286,291.5,296.5,300.5,303,306,309.25,317.75,329,448.25],
+y: [0.355171,0.416198,0.439055,0.426409,0.430145,0.427572,0.45964,0.444118,0.443784,0.438079,0.449839,0.430982,0.444957,0.44322,0.442143,0.439553,0.439679,0.44011,0.445137,0.451039,0.449158,0.45032,0.452851,0.455378,0.456062,0.45681,0.457325,0.446255,0.45468,0.457036,0.460841,0.473051,0.451211,0.467765,0.460757,0.463655,0.463727,0.465897,0.464179,0.464011,0.475228,0.478188,0.473799,0.44854,0.462082,0.44874,0.460884,0.403612,0.429989,0.364992],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Cholesterol',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Cholesterol',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item8").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:4 / span 1; grid-column:2 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item9" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item9',
+    [{
+x: [163.25,187,197,198.5,200.5,203,207,210.5,212,215.5,219,222.5,226,227.5,229,230,231,232.5,234,236.25,238.75,240.25,242.25,244,245,246,248,250.25,252.75,255.5,257.5,261,265,267.5,269,270.75,273.25,278,282,283,286,291.5,296.5,300.5,303,306,309.25,317.75,329,448.25],
+y: [0.596882,0.289532,0.563474,0.492205,0.47216,0.697105,0.363029,0.621381,0.545657,0.316258,0.394209,0.327394,0.632517,0.182628,0.438753,0.363029,0.434298,0.659243,1,0.267261,0.534521,0.385301,0.587973,0.380846,0.33853,0.429844,0.634744,0.389755,0.826281,0.518931,0.412027,0.67706,0.35412,0.293987,0.819599,0.331849,0.47216,0.253898,0.55902,0.465479,0.454343,0.287305,0.229399,0.282851,0.345212,0.291759,0.33853,0.276169,0.175947,0.0445434],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [163.25,163.25,187,197,198.5,200.5,203,207,210.5,212,215.5,219,222.5,226,227.5,229,230,231,232.5,234,236.25,238.75,240.25,242.25,244,245,246,248,250.25,252.75,255.5,257.5,261,265,267.5,269,270.75,273.25,278,282,283,286,291.5,296.5,300.5,303,306,309.25,317.75,329,448.25],
+y: [0,0.0270707,0.040202,0.0657576,0.0880808,0.109495,0.141111,0.157576,0.185758,0.210505,0.224848,0.242727,0.257576,0.286263,0.294545,0.314444,0.330909,0.350606,0.380505,0.425859,0.43798,0.462222,0.479697,0.506364,0.523636,0.53899,0.558485,0.587273,0.604949,0.642424,0.66596,0.684646,0.715354,0.731414,0.744747,0.781919,0.79697,0.818384,0.829899,0.855253,0.876364,0.89697,0.91,0.920404,0.933232,0.948889,0.962121,0.977475,0.99,0.99798,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Cholesterol',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Cholesterol',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item9").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:3 / span 1; grid-column:3 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item10" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item10',
+    [{
+x: [0.25,0.75],
+y: [0.450554,0.446132],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'FBS over 120',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'FBS over 120',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item10").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:4 / span 1; grid-column:3 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item11" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item11',
+    [{
+x: [0.25,0.75],
+y: [1,0.0869565],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [0.25,0.25,0.75],
+y: [0,0.92,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'FBS over 120',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'FBS over 120',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item11").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:5 / span 1; grid-column:1 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item12" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item12',
+    [{
+x: [0.25,1,1.75],
+y: [0.433227,0.436723,0.467807],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'EKG results',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'EKG results',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item12").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:6 / span 1; grid-column:1 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item13" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item13',
+    [{
+x: [0.25,1,1.75],
+y: [1,0.00441059,0.980353],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [0.25,0.25,1,1.75],
+y: [0,0.503838,0.506061,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'EKG results',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'EKG results',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item13").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:5 / span 1; grid-column:2 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item14" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item14',
+    [{
+x: [88.25,108.5,113,118.5,124,126,129,132,135.5,139.5,141.5,143,144,145,146,147,148.5,150,151,152,153,154,155.5,157,158,159,160,161,162,163,164.5,166.5,168,169,170,171,172,173,174,175.25,177.25,179,180,181,182.25,184.75,188.75,192,197.5],
+y: [0.846825,0.744814,0.603213,0.648817,0.583277,0.572434,0.670781,0.543413,0.632035,0.522628,0.489074,0.463544,0.53213,0.520479,0.507039,0.488219,0.388071,0.457246,0.420693,0.453896,0.42621,0.444066,0.463993,0.445997,0.445258,0.414719,0.45179,0.409446,0.394331,0.374979,0.419354,0.265101,0.403647,0.403032,0.402528,0.370743,0.364586,0.380556,0.377974,0.330867,0.250283,0.36417,0.232632,0.277544,0.297814,0.177316,0.0642931,0.0744755,0.155428],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Max HR',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Max HR',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item14").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:6 / span 1; grid-column:2 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item15" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item15',
+    [{
+x: [88.25,108.5,113,118.5,124,126,129,132,135.5,139.5,141.5,143,144,145,146,147,148.5,150,151,152,153,154,155.5,157,158,159,160,161,162,163,164.5,166.5,168,169,170,171,172,173,174,175.25,177.25,179,180,181,182.25,184.75,188.75,192,197.5],
+y: [0.376736,0.298611,0.237847,0.470486,0.553819,0.229167,0.373264,0.548611,0.246528,0.385417,0.590278,0.335069,0.298611,0.270833,0.236111,0.418403,0.276042,0.5,0.359375,0.526042,0.152778,0.345486,0.565972,0.321181,0.453125,0.291667,0.819444,0.350694,1,0.789931,0.432292,0.118056,0.348958,0.215278,0.34375,0.282986,0.717014,0.465278,0.178819,0.168403,0.413194,0.265625,0.104167,0.0920139,0.260417,0.0989583,0.015625,0.0347222,0.0104167],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [88.25,88.25,108.5,113,118.5,124,126,129,132,135.5,139.5,141.5,143,144,145,146,147,148.5,150,151,152,153,154,155.5,157,158,159,160,161,162,163,164.5,166.5,168,169,170,171,172,173,174,175.25,177.25,179,180,181,182.25,184.75,188.75,192,197.5],
+y: [0,0.0219192,0.0392929,0.0531313,0.0805051,0.112727,0.126061,0.147778,0.179697,0.19404,0.216465,0.250808,0.270303,0.287677,0.303434,0.317172,0.341515,0.357576,0.386667,0.407576,0.438182,0.447071,0.467172,0.500101,0.518788,0.545152,0.562121,0.609798,0.630202,0.688384,0.734343,0.759495,0.766364,0.786667,0.799192,0.819192,0.835657,0.877374,0.904444,0.914849,0.924646,0.948687,0.964141,0.970202,0.975556,0.990707,0.996465,0.997374,0.999394,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Max HR',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Max HR',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item15").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:5 / span 1; grid-column:3 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item16" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item16',
+    [{
+x: [0.25,0.75],
+y: [0.425216,0.527869],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Exercise angina',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Exercise angina',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item16").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:6 / span 1; grid-column:3 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item17" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item17',
+    [{
+x: [0.25,0.75],
+y: [1,0.375191],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [0.25,0.25,0.75],
+y: [0,0.727172,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Exercise angina',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Exercise angina',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item17").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:7 / span 1; grid-column:1 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item18" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item18',
+    [{
+x: [0.025,0.1,0.2,0.3,0.4,0.5,0.585,0.735,0.9,1,1.1,1.2,1.3,1.4,1.5,1.585,1.735,1.9,2,2.15,2.35,2.5,2.6,2.75,2.9,3,3.15,3.35,3.5,3.6,3.75,3.9,4,4.15,4.35,4.5,4.6,4.75,4.9,5.025,5.175,5.35,5.575,5.875,6.1,6.175],
+y: [0.426515,0.424979,0.425187,0.423705,0.426085,0.430609,0.432976,0.433777,0.441854,0.465733,0.47068,0.469161,0.470155,0.471881,0.471486,0.480874,0.47931,0.487059,0.541493,0.541737,0.538919,0.544194,0.550558,0.551835,0.551201,0.546916,0.54888,0.548756,0.558169,0.561235,0.561444,0.569869,0.574207,0.578513,0.588797,0.570627,0.565045,0.563053,0.557442,0.555611,0.55763,0.566002,0.570987,0.56672,0.575615,0.575615],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'ST depression',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'ST depression',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item18").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:8 / span 1; grid-column:1 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item19" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item19',
+    [{
+x: [0.025,0.1,0.2,0.3,0.4,0.5,0.585,0.735,0.9,1,1.1,1.2,1.3,1.4,1.5,1.585,1.735,1.9,2,2.15,2.35,2.5,2.6,2.75,2.9,3,3.15,3.35,3.5,3.6,3.75,3.9,4,4.15,4.35,4.5,4.6,4.75,4.9,5.025,5.175,5.35,5.575,5.875,6.1,6.175],
+y: [1,0.025641,0.057492,0.0068109,0.0398638,0.0184295,0.0641026,0.0498798,0.0114183,0.0853365,0.00901442,0.0899439,0.0078125,0.0891426,0.0170272,0.0899439,0.0747196,0.0144231,0.0532853,0.0410657,0.0196314,0.00761218,0.0304487,0.0154247,0.00220353,0.0168269,0.00941506,0.00620994,0.00220353,0.0104167,0.00360577,0.000400641,0.00580929,0.00260417,0.00140224,0.00120192,0.000801282,0.000801282,0,0,0.000200321,0,0.000200321,0.000200321,0.000200321,0],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [0.025,0.025,0.1,0.2,0.3,0.4,0.5,0.585,0.735,0.9,1,1.1,1.2,1.3,1.4,1.5,1.585,1.735,1.9,2,2.15,2.35,2.5,2.6,2.75,2.9,3,3.15,3.35,3.5,3.6,3.75,3.9,4,4.15,4.35,4.5,4.6,4.75,4.9,5.025,5.175,5.35,5.575,5.875,6.1,6.175],
+y: [0,0.504242,0.517172,0.546162,0.549596,0.569697,0.57899,0.611313,0.636465,0.642222,0.685253,0.689798,0.735152,0.739091,0.78404,0.792626,0.83798,0.875657,0.882929,0.909798,0.930505,0.940404,0.944242,0.959596,0.967374,0.968485,0.97697,0.981717,0.984848,0.98596,0.991212,0.99303,0.993232,0.996162,0.997475,0.998182,0.998788,0.999192,0.999596,0.999596,0.999596,0.999697,0.999697,0.999798,0.999899,1,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'ST depression',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'ST depression',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item19").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:7 / span 1; grid-column:2 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item20" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item20',
+    [{
+x: [1.25,2,2.75],
+y: [0.416715,0.493781,0.494377],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Slope of ST',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Slope of ST',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item20").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:8 / span 1; grid-column:2 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item21" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item21',
+    [{
+x: [1.25,2,2.75],
+y: [1,0.72139,0.0433155],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [1.25,1.25,2,2.75],
+y: [0,0.566667,0.975455,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Slope of ST',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Slope of ST',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item21").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:7 / span 1; grid-column:3 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item22" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item22',
+    [{
+x: [0.25,1,2,2.75],
+y: [0.419059,0.514121,0.591346,0.59594],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Number of vessels fluro',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Number of vessels fluro',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item22").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:8 / span 1; grid-column:3 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item23" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item23',
+    [{
+x: [0.25,1,2,2.75],
+y: [1,0.243713,0.122719,0.0561862],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [0.25,0.25,1,2,2.75],
+y: [0,0.702929,0.874242,0.960505,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Number of vessels fluro',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Number of vessels fluro',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item23").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:9 / span 1; grid-column:1 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item24" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item24',
+    [{
+x: [3.75,5.5,6.75],
+y: [0.375647,0.512969,0.579036],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Thallium',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Thallium',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item24").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:10 / span 1; grid-column:1 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_pdp_item25" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_pdp_item25',
+    [{
+x: [3.75,5.5,6.75],
+y: [1,0.0272447,0.669123],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [3.75,3.75,5.5,6.75],
+y: [0,0.589495,0.605556,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Thallium',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Thallium',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_pdp_item25").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div></div></div><div id="8ada-3ddf-6927-87c4_body_cep" class="tab_content"><div style='display: grid; gap: 0px; grid-auto-columns: min-content;'><div style='grid-row:1 / span 1; grid-column:1 / span 1;'><script src='https://www.gstatic.com/external_hosted/plotly/plotly.min.js'></script><div id="chart_8ada_3ddf_6927_87c4_cep_item0" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item0',
+    [{
+x: [30.25,33,35.25,36.75,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71.5,73.75,75.75,76.75],
+y: [0.264136,0.279677,0.321204,0.281406,0.294193,0.242462,0.343688,0.266322,0.263765,0.295369,0.300847,0.32358,0.348858,0.338631,0.337657,0.364997,0.374944,0.369916,0.376302,0.363377,0.456561,0.521719,0.505834,0.547485,0.568139,0.519564,0.53574,0.547142,0.557917,0.522734,0.575801,0.620714,0.578351,0.569008,0.535124,0.520202,0.589611,0.496467,0.602814,0.63097,0.622699],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+{
+x: [30.25,33,35.25,36.75,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71.5,73.75,75.75,76.75],
+y: [0.254658,0.287823,0.331131,0.269755,0.314176,0.245317,0.352123,0.258524,0.261698,0.290898,0.302175,0.330886,0.355355,0.336705,0.332306,0.366456,0.373484,0.363057,0.370938,0.364107,0.458582,0.533768,0.504762,0.548014,0.570328,0.519632,0.537574,0.553653,0.55942,0.521298,0.576942,0.626243,0.586477,0.565602,0.559278,0.507389,0.599112,0.505857,0.578947,0.612903,0.611354],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Label:1',
+},
+{
+x: [30.25,33,35.25,36.75,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71.5,73.75,75.75,76.75],
+y: [0.0869565,0.0861009,0.105698,0.0871935,0.0842912,0.0864048,0.109078,0.09188,0.0925315,0.0996391,0.0961107,0.0986691,0.102251,0.106936,0.106593,0.124684,0.103558,0.101744,0.108496,0.109362,0.114361,0.11878,0.124444,0.118243,0.119742,0.120965,0.114664,0.118399,0.123023,0.127535,0.113292,0.113472,0.125733,0.122368,0.119416,0.121511,0.121044,0.139092,0.0921053,0.115207,0.152838],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'Error rate',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Age',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Age',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item0").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:2 / span 1; grid-column:1 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item1" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item1',
+    [{
+x: [30.25,33,35.25,36.75,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71.5,73.75,75.75,76.75],
+y: [0.0229149,0.0578565,0.0861799,0.0522346,0.0185739,0.117777,0.0972104,0.519712,0.474523,0.354967,0.539781,0.310134,0.338244,0.147737,0.346499,0.224879,0.358027,0.803658,0.659194,0.329917,1,0.24025,0.448335,0.695132,0.905138,0.672431,0.623114,0.295118,0.544335,0.280672,0.427768,0.365001,0.254697,0.378594,0.0828352,0.0866781,0.128167,0.0972104,0.0162254,0.0154426,0.0162966],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [30.25,30.25,33,35.25,36.75,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71.5,73.75,75.75,76.75],
+y: [0,0.00170581,0.0060127,0.012428,0.0163164,0.0176991,0.0264665,0.0337029,0.0723908,0.107715,0.134139,0.174321,0.197407,0.222587,0.233584,0.259378,0.276118,0.30277,0.362595,0.411666,0.436226,0.510667,0.528551,0.561926,0.613672,0.681051,0.731108,0.777493,0.799462,0.839983,0.860876,0.89272,0.919891,0.938851,0.967033,0.9732,0.979652,0.989193,0.996429,0.997637,0.998787,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Age',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Age',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item1").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:1 / span 1; grid-column:2 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item2" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item2',
+    [{
+x: [0.25,0.75],
+y: [0.181812,0.553725],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+{
+x: [0.25,0.75],
+y: [0.181593,0.554355],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Label:1',
+},
+{
+x: [0.25,0.75],
+y: [0.078779,0.124607],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'Error rate',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Sex',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Sex',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item2").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:2 / span 1; grid-column:2 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item3" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item3',
+    [{
+x: [0.25,0.75],
+y: [0.401607,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [0.25,0.25,0.75],
+y: [0,0.286533,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Sex',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Sex',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item3").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:1 / span 1; grid-column:3 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item4" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item4',
+    [{
+x: [1.25,2,3,3.75],
+y: [0.10687,0.158709,0.190714,0.697203],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+{
+x: [1.25,2,3,3.75],
+y: [0.108663,0.163924,0.192554,0.695495],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Label:1',
+},
+{
+x: [1.25,2,3,3.75],
+y: [0.0673551,0.0925148,0.096851,0.128495],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'Error rate',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Chest pain type',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Chest pain type',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item4").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:2 / span 1; grid-column:3 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item5" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item5',
+    [{
+x: [1.25,2,3,3.75],
+y: [0.0885383,0.227203,0.601999,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [1.25,1.25,2,3,3.75],
+y: [0,0.046168,0.164642,0.478553,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Chest pain type',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Chest pain type',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item5").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:3 / span 1; grid-column:1 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item6" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item6',
+    [{
+x: [97.25,102.5,105,107,109.5,111.75,114.25,117.25,120,121.75,123.5,125,126,127.5,129.5,131.5,133.5,135,136.25,138,139.75,141.75,144.25,147,149.75,152,154.25,157.25,160,163.75,168.75,172,173.75,176.75,182.5,191,198],
+y: [0.442152,0.452758,0.479926,0.476295,0.457661,0.398588,0.442091,0.434359,0.450195,0.430132,0.468985,0.459679,0.449649,0.437284,0.430121,0.453571,0.4624,0.488071,0.403481,0.384791,0.477188,0.432927,0.501761,0.450983,0.43798,0.448879,0.50169,0.385679,0.445948,0.412106,0.42082,0.40656,0.347151,0.383375,0.375801,0.328706,0.484411],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+{
+x: [97.25,102.5,105,107,109.5,111.75,114.25,117.25,120,121.75,123.5,125,126,127.5,129.5,131.5,133.5,135,136.25,138,139.75,141.75,144.25,147,149.75,152,154.25,157.25,160,163.75,168.75,172,173.75,176.75,182.5,191,198],
+y: [0.435217,0.438947,0.475304,0.485723,0.457671,0.398036,0.436253,0.436766,0.44831,0.422376,0.475089,0.455904,0.454776,0.439624,0.428652,0.456428,0.469449,0.496939,0.399469,0.38211,0.481468,0.430047,0.516342,0.460366,0.437072,0.450108,0.5,0.37037,0.447709,0.408377,0.432258,0.382883,0.345133,0.383821,0.377012,0.306122,0.494737],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Label:1',
+},
+{
+x: [97.25,102.5,105,107,109.5,111.75,114.25,117.25,120,121.75,123.5,125,126,127.5,129.5,131.5,133.5,135,136.25,138,139.75,141.75,144.25,147,149.75,152,154.25,157.25,160,163.75,168.75,172,173.75,176.75,182.5,191,198],
+y: [0.107391,0.104211,0.107692,0.108566,0.11319,0.105179,0.130095,0.109658,0.113537,0.116219,0.105872,0.119249,0.107354,0.108279,0.110851,0.108139,0.121597,0.120634,0.119575,0.102131,0.112531,0.11831,0.127433,0.0914634,0.106447,0.109835,0.0801887,0.0883191,0.113579,0.109948,0.104839,0.112613,0.110619,0.0998279,0.097318,0.0918367,0.110526],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'Error rate',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'BP',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'BP',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item6").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:4 / span 1; grid-column:1 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item7" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item7',
+    [{
+x: [97.25,102.5,105,107,109.5,111.75,114.25,117.25,120,121.75,123.5,125,126,127.5,129.5,131.5,133.5,135,136.25,138,139.75,141.75,144.25,147,149.75,152,154.25,157.25,160,163.75,168.75,172,173.75,176.75,182.5,191,198],
+y: [0.0658102,0.0271825,0.0353372,0.09119,0.367049,0.160233,0.0329909,0.107242,1,0.0329909,0.0643223,0.17228,0.0338493,0.158288,0.917365,0.0994878,0.0472975,0.0794586,0.0323042,0.162494,0.855361,0.030473,0.0779135,0.0093851,0.380354,0.0398581,0.00606598,0.0100432,0.203554,0.00546511,0.0177401,0.00635211,0.00646657,0.0166242,0.0373401,0.00560817,0.00543649],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [97.25,97.25,102.5,105,107,109.5,111.75,114.25,117.25,120,121.75,123.5,125,126,127.5,129.5,131.5,133.5,135,136.25,138,139.75,141.75,144.25,147,149.75,152,154.25,157.25,160,163.75,168.75,172,173.75,176.75,182.5,191,198],
+y: [0,0.0121843,0.017217,0.0237594,0.0406427,0.108599,0.138266,0.144374,0.164229,0.349373,0.355481,0.367389,0.399286,0.405553,0.434859,0.604703,0.623123,0.63188,0.646591,0.652572,0.682656,0.841021,0.846663,0.861088,0.862826,0.933246,0.940625,0.941748,0.943608,0.981294,0.982306,0.985591,0.986767,0.987964,0.991042,0.997955,0.998993,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'BP',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'BP',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item7").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:3 / span 1; grid-column:2 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item8" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item8',
+    [{
+x: [163.25,187,197,198.5,200.5,203,207,210.5,212,215.5,219,222.5,226,227.5,229,230,231,232.5,234,236.25,238.75,240.25,242.25,244,245,246,248,250.25,252.75,255.5,257.5,261,265,267.5,269,270.75,273.25,278,282,283,286,291.5,296.5,300.5,303,306,309.25,317.75,329,448.25],
+y: [0.365382,0.291617,0.439745,0.359029,0.330047,0.364916,0.463578,0.425848,0.423337,0.375918,0.448956,0.353918,0.428326,0.434326,0.429519,0.398429,0.400781,0.385449,0.417693,0.335851,0.443481,0.421767,0.454859,0.454479,0.446564,0.485863,0.495219,0.394839,0.483011,0.464284,0.51128,0.488337,0.471029,0.566512,0.496002,0.464515,0.508229,0.552699,0.543357,0.519776,0.544167,0.573092,0.55461,0.510158,0.500619,0.495019,0.488369,0.377308,0.371851,0.205842],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+{
+x: [163.25,187,197,198.5,200.5,203,207,210.5,212,215.5,219,222.5,226,227.5,229,230,231,232.5,234,236.25,238.75,240.25,242.25,244,245,246,248,250.25,252.75,255.5,257.5,261,265,267.5,269,270.75,273.25,278,282,283,286,291.5,296.5,300.5,303,306,309.25,317.75,329,448.25],
+y: [0.371333,0.275498,0.448143,0.360223,0.328933,0.365287,0.478062,0.424631,0.430074,0.376595,0.453869,0.352571,0.42945,0.436611,0.426546,0.392417,0.408911,0.383453,0.417126,0.336861,0.448401,0.423537,0.455913,0.454072,0.43916,0.485617,0.498078,0.392701,0.486569,0.455853,0.506299,0.496517,0.466057,0.568295,0.499863,0.450545,0.510819,0.541966,0.534679,0.51248,0.535556,0.588352,0.549785,0.50777,0.50604,0.493368,0.498196,0.378179,0.37223,0.211864],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Label:1',
+},
+{
+x: [163.25,187,197,198.5,200.5,203,207,210.5,212,215.5,219,222.5,226,227.5,229,230,231,232.5,234,236.25,238.75,240.25,242.25,244,245,246,248,250.25,252.75,255.5,257.5,261,265,267.5,269,270.75,273.25,278,282,283,286,291.5,296.5,300.5,303,306,309.25,317.75,329,448.25],
+y: [0.119709,0.100772,0.118886,0.111061,0.100281,0.106379,0.120049,0.109749,0.108498,0.0890134,0.121131,0.116537,0.110534,0.111255,0.117784,0.109125,0.120417,0.106956,0.109504,0.0989416,0.119587,0.116764,0.121075,0.112982,0.106547,0.113928,0.105304,0.109197,0.117013,0.109638,0.111632,0.117417,0.109334,0.0968543,0.109059,0.112727,0.105276,0.119904,0.120298,0.122897,0.102355,0.11252,0.108584,0.098278,0.118121,0.10997,0.115079,0.111157,0.105613,0.0367232],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'Error rate',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Cholesterol',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Cholesterol',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item8").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:4 / span 1; grid-column:2 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item9" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item9',
+    [{
+x: [163.25,187,197,198.5,200.5,203,207,210.5,212,215.5,219,222.5,226,227.5,229,230,231,232.5,234,236.25,238.75,240.25,242.25,244,245,246,248,250.25,252.75,255.5,257.5,261,265,267.5,269,270.75,273.25,278,282,283,286,291.5,296.5,300.5,303,306,309.25,317.75,329,448.25],
+y: [0.582989,0.282484,0.506887,0.513659,0.408632,0.676538,0.376722,0.599288,0.556474,0.368802,0.385675,0.310262,0.597107,0.177456,0.445363,0.37236,0.407025,0.592401,1,0.249426,0.567264,0.374541,0.610537,0.374885,0.371671,0.403007,0.597337,0.393136,0.756313,0.510904,0.391758,0.675505,0.351699,0.277319,0.838843,0.315657,0.472107,0.239325,0.585859,0.423095,0.492309,0.289715,0.267447,0.273301,0.342057,0.268251,0.318182,0.279844,0.155418,0.0406336],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [163.25,163.25,187,197,198.5,200.5,203,207,210.5,212,215.5,219,222.5,226,227.5,229,230,231,232.5,234,236.25,238.75,240.25,242.25,244,245,246,248,250.25,252.75,255.5,257.5,261,265,267.5,269,270.75,273.25,278,282,283,286,291.5,296.5,300.5,303,306,309.25,317.75,329,448.25],
+y: [0,0.0269062,0.0399434,0.0633373,0.0870438,0.105903,0.137127,0.154513,0.182172,0.207854,0.224875,0.242675,0.256994,0.284552,0.292742,0.313296,0.330481,0.349267,0.376607,0.422759,0.434271,0.460451,0.477737,0.505915,0.523216,0.54037,0.558969,0.586538,0.604682,0.639587,0.663167,0.681247,0.712423,0.728655,0.741454,0.780168,0.794736,0.816525,0.82757,0.854609,0.874136,0.896857,0.910228,0.922571,0.935185,0.950971,0.963352,0.978036,0.990952,0.998125,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Cholesterol',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Cholesterol',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item9").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:3 / span 1; grid-column:3 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item10" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item10',
+    [{
+x: [0.25,0.75],
+y: [0.442676,0.498975],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+{
+x: [0.25,0.75],
+y: [0.442897,0.501297],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Label:1',
+},
+{
+x: [0.25,0.75],
+y: [0.111403,0.112316],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'Error rate',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'FBS over 120',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'FBS over 120',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item10").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:4 / span 1; grid-column:3 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item11" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item11',
+    [{
+x: [0.25,0.75],
+y: [1,0.0865038],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [0.25,0.25,0.75],
+y: [0,0.920383,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'FBS over 120',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'FBS over 120',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item11").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:5 / span 1; grid-column:1 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item12" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item12',
+    [{
+x: [0.25,1,1.75],
+y: [0.34108,0.345811,0.557418],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+{
+x: [0.25,1,1.75],
+y: [0.341914,0.329843,0.557412],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Label:1',
+},
+{
+x: [0.25,1,1.75],
+y: [0.10873,0.0890052,0.114413],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'Error rate',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'EKG results',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'EKG results',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item12").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:6 / span 1; grid-column:1 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item13" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item13',
+    [{
+x: [0.25,1,1.75],
+y: [1,0.00398606,0.965743],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [0.25,0.25,1,1.75],
+y: [0,0.507684,0.509708,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'EKG results',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'EKG results',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item13").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:5 / span 1; grid-column:2 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item14" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item14',
+    [{
+x: [88.25,108.5,113,118.5,124,126,129,132,135.5,139.5,141.5,143,144,145,146,147,148.5,150,151,152,153,154,155.5,157,158,159,160,161,162,163,164.5,166.5,168,169,170,171,172,173,174,175.25,177.25,179,180,181,182.25,184.75,188.75,192,197.5],
+y: [0.950335,0.871384,0.799851,0.813091,0.782507,0.801036,0.705825,0.73168,0.670969,0.672216,0.588866,0.474885,0.740071,0.70352,0.66676,0.588526,0.335272,0.513436,0.317663,0.463507,0.301263,0.436614,0.53025,0.417701,0.438785,0.299904,0.503022,0.309632,0.262705,0.204975,0.346171,0.0938329,0.322524,0.264268,0.284136,0.191222,0.175353,0.228313,0.214995,0.12632,0.194486,0.181395,0.0368068,0.0699463,0.0994798,0.0467128,0.0104174,0.0132561,0.0197105],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+{
+x: [88.25,108.5,113,118.5,124,126,129,132,135.5,139.5,141.5,143,144,145,146,147,148.5,150,151,152,153,154,155.5,157,158,159,160,161,162,163,164.5,166.5,168,169,170,171,172,173,174,175.25,177.25,179,180,181,182.25,184.75,188.75,192,197.5],
+y: [0.949085,0.867806,0.793925,0.816788,0.781183,0.796967,0.699802,0.733402,0.66627,0.674788,0.591827,0.466913,0.739407,0.717866,0.670903,0.589899,0.322691,0.514792,0.320739,0.47007,0.295918,0.437912,0.533918,0.415454,0.435464,0.287987,0.513783,0.31676,0.262993,0.203459,0.354171,0.0714286,0.329117,0.261408,0.294369,0.190044,0.170549,0.233848,0.230847,0.107763,0.185397,0.185025,0.0235192,0.0618357,0.0988228,0.0418251,0.00851064,0.00558659,0.0120482],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Label:1',
+},
+{
+x: [88.25,108.5,113,118.5,124,126,129,132,135.5,139.5,141.5,143,144,145,146,147,148.5,150,151,152,153,154,155.5,157,158,159,160,161,162,163,164.5,166.5,168,169,170,171,172,173,174,175.25,177.25,179,180,181,182.25,184.75,188.75,192,197.5],
+y: [0.0455185,0.0732194,0.10073,0.0887313,0.100547,0.109098,0.108329,0.112369,0.124455,0.12338,0.132691,0.129793,0.127111,0.117794,0.122699,0.125088,0.131136,0.138965,0.126121,0.133022,0.119898,0.127867,0.13567,0.128219,0.136808,0.129545,0.130189,0.130973,0.11459,0.0976744,0.112309,0.0554622,0.131389,0.124511,0.118793,0.0973701,0.0847652,0.111525,0.110383,0.0739726,0.0930565,0.106489,0.0226481,0.0463768,0.0724907,0.0389734,0.00851064,0.00558659,0.0180723],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'Error rate',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Max HR',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Max HR',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item14").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:6 / span 1; grid-column:2 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item15" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item15',
+    [{
+x: [88.25,108.5,113,118.5,124,126,129,132,135.5,139.5,141.5,143,144,145,146,147,148.5,150,151,152,153,154,155.5,157,158,159,160,161,162,163,164.5,166.5,168,169,170,171,172,173,174,175.25,177.25,179,180,181,182.25,184.75,188.75,192,197.5],
+y: [0.381251,0.313982,0.232668,0.466768,0.54003,0.241882,0.360855,0.521424,0.225691,0.400215,0.584489,0.314966,0.280794,0.249843,0.204133,0.382592,0.260578,0.459612,0.329099,0.497629,0.175329,0.339297,0.510332,0.319528,0.439395,0.275517,0.808033,0.368817,1,0.750067,0.414975,0.10645,0.346543,0.274443,0.37651,0.285714,0.702836,0.480454,0.177476,0.195903,0.374899,0.268808,0.102693,0.0925843,0.288756,0.094105,0.0210216,0.0320243,0.0148493],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [88.25,88.25,108.5,113,118.5,124,126,129,132,135.5,139.5,141.5,143,144,145,146,147,148.5,150,151,152,153,154,155.5,157,158,159,160,161,162,163,164.5,166.5,168,169,170,171,172,173,174,175.25,177.25,179,180,181,182.25,184.75,188.75,192,197.5],
+y: [0,0.0225781,0.0411725,0.0549513,0.0825939,0.114575,0.1289,0.15027,0.181149,0.194515,0.218216,0.25283,0.271483,0.288112,0.302908,0.314997,0.337654,0.353086,0.380305,0.399794,0.429265,0.439648,0.459741,0.489964,0.508887,0.534908,0.551225,0.599077,0.620919,0.68014,0.72456,0.749135,0.755439,0.775962,0.792215,0.814512,0.831432,0.873055,0.901508,0.912019,0.92362,0.945822,0.961741,0.967823,0.973306,0.990406,0.995979,0.997224,0.999121,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Max HR',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Max HR',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item15").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:5 / span 1; grid-column:3 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item16" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item16',
+    [{
+x: [0.25,0.75],
+y: [0.312116,0.806837],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+{
+x: [0.25,0.75],
+y: [0.312584,0.807014],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Label:1',
+},
+{
+x: [0.25,0.75],
+y: [0.119491,0.0901275],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'Error rate',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Exercise angina',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Exercise angina',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item16").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:6 / span 1; grid-column:3 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item17" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item17',
+    [{
+x: [0.25,0.75],
+y: [1,0.375452],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [0.25,0.25,0.75],
+y: [0,0.727034,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Exercise angina',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Exercise angina',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item17").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:7 / span 1; grid-column:1 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item18" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item18',
+    [{
+x: [0.025,0.1,0.2,0.3,0.4,0.5,0.585,0.735,0.9,1,1.1,1.2,1.3,1.4,1.5,1.585,1.735,1.9,2,2.15,2.35,2.5,2.6,2.75,2.9,3,3.15,3.35,3.5,3.6,3.75,3.9,4,4.15,4.35,4.5,4.6,4.75,4.9,5.025,5.175,5.35,5.575,5.875,6.1,6.175],
+y: [0.269305,0.335127,0.337324,0.321509,0.370623,0.325038,0.372687,0.367506,0.402642,0.572783,0.678595,0.671049,0.660287,0.693998,0.665191,0.697448,0.696821,0.700462,0.830851,0.873061,0.864289,0.87672,0.88311,0.885526,0.914507,0.837453,0.86372,0.85985,0.875192,0.889936,0.884231,0.87891,0.923614,0.941304,0.946237,0.933604,0.923883,0.911431,0.901847,0.854961,0.872994,0.969777,0.859467,0.944226,0.992276,0.98641],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+{
+x: [0.025,0.1,0.2,0.3,0.4,0.5,0.585,0.735,0.9,1,1.1,1.2,1.3,1.4,1.5,1.585,1.735,1.9,2,2.15,2.35,2.5,2.6,2.75,2.9,3,3.15,3.35,3.5,3.6,3.75,3.9,4,4.15,4.35,4.5,4.6,4.75,4.9,5.025,5.175,5.35,5.575,5.875,6.1,6.175],
+y: [0.268817,0.335132,0.330969,0.302932,0.367213,0.323564,0.380148,0.372107,0.407529,0.574353,0.681598,0.669261,0.655763,0.695789,0.671449,0.702301,0.698696,0.707816,0.829225,0.866734,0.866829,0.875367,0.885854,0.883423,0.919614,0.837516,0.874286,0.853755,0.8583,0.894946,0.879902,0.875,0.94508,0.952756,0.960784,0.934783,0.971154,0.971831,0.928571,0.9,0.916667,1,0.888889,1,1,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Label:1',
+},
+{
+x: [0.025,0.1,0.2,0.3,0.4,0.5,0.585,0.735,0.9,1,1.1,1.2,1.3,1.4,1.5,1.585,1.735,1.9,2,2.15,2.35,2.5,2.6,2.75,2.9,3,3.15,3.35,3.5,3.6,3.75,3.9,4,4.15,4.35,4.5,4.6,4.75,4.9,5.025,5.175,5.35,5.575,5.875,6.1,6.175],
+y: [0.114599,0.119725,0.128003,0.114007,0.126356,0.112544,0.1287,0.129773,0.126841,0.117539,0.116223,0.115702,0.129283,0.113942,0.107126,0.108673,0.108196,0.108839,0.0875567,0.0778785,0.077561,0.0835777,0.0731707,0.078841,0.0418006,0.0865747,0.0647619,0.0974967,0.0809717,0.0564916,0.0808824,0.0375,0.0366133,0.0511811,0.0294118,0.0652174,0.0288462,0.0422535,0,0.2,0.166667,0,0.111111,0.0416667,0,0],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'Error rate',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'ST depression',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'ST depression',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item18").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:8 / span 1; grid-column:1 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item19" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item19',
+    [{
+x: [0.025,0.1,0.2,0.3,0.4,0.5,0.585,0.735,0.9,1,1.1,1.2,1.3,1.4,1.5,1.585,1.735,1.9,2,2.15,2.35,2.5,2.6,2.75,2.9,3,3.15,3.35,3.5,3.6,3.75,3.9,4,4.15,4.35,4.5,4.6,4.75,4.9,5.025,5.175,5.35,5.575,5.875,6.1,6.175],
+y: [1,0.0216353,0.0658507,0.00651819,0.0420922,0.0181108,0.0659887,0.0536636,0.0129727,0.0923056,0.00876876,0.0927621,0.00681543,0.0874859,0.0221979,0.0899701,0.0683879,0.0145332,0.0538334,0.0316249,0.0217627,0.00724007,0.032644,0.015754,0.00330156,0.0169218,0.0111467,0.0080575,0.00262214,0.0107115,0.0043313,0.000849275,0.00463916,0.00269645,0.00108283,0.000488333,0.00220811,0.000753732,0.000148623,0.000318478,0.000127391,8.49275e-05,9.55434e-05,0.000254782,2.12319e-05,0.000159239],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [0.025,0.025,0.1,0.2,0.3,0.4,0.5,0.585,0.735,0.9,1,1.1,1.2,1.3,1.4,1.5,1.585,1.735,1.9,2,2.15,2.35,2.5,2.6,2.75,2.9,3,3.15,3.35,3.5,3.6,3.75,3.9,4,4.15,4.35,4.5,4.6,4.75,4.9,5.025,5.175,5.35,5.575,5.875,6.1,6.175],
+y: [0,0.499017,0.509814,0.542674,0.545927,0.566932,0.575969,0.608899,0.635678,0.642151,0.688214,0.692589,0.738879,0.74228,0.785937,0.797014,0.841911,0.876038,0.88329,0.910154,0.925935,0.936795,0.940408,0.956698,0.964559,0.966207,0.974651,0.980214,0.984235,0.985543,0.990888,0.99305,0.993473,0.995788,0.997134,0.997674,0.997918,0.99902,0.999396,0.99947,0.999629,0.999693,0.999735,0.999783,0.99991,0.999921,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'ST depression',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'ST depression',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item19").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:7 / span 1; grid-column:2 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item20" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item20',
+    [{
+x: [1.25,2,2.75],
+y: [0.262269,0.690617,0.727364],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+{
+x: [1.25,2,2.75],
+y: [0.261537,0.692506,0.729011],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Label:1',
+},
+{
+x: [1.25,2,2.75],
+y: [0.11186,0.110834,0.113187],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'Error rate',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Slope of ST',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Slope of ST',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item20").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:8 / span 1; grid-column:2 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item21" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item21',
+    [{
+x: [1.25,2,2.75],
+y: [1,0.710798,0.0422552],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [1.25,1.25,2,2.75],
+y: [0,0.570433,0.975896,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Slope of ST',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Slope of ST',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item21").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:7 / span 1; grid-column:3 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item22" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item22',
+    [{
+x: [0.25,1,2,2.75],
+y: [0.30193,0.729531,0.894636,0.895501],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+{
+x: [0.25,1,2,2.75],
+y: [0.302685,0.726782,0.897444,0.897651],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Label:1',
+},
+{
+x: [0.25,1,2,2.75],
+y: [0.120793,0.107577,0.0633816,0.0623369],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'Error rate',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Number of vessels fluro',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Number of vessels fluro',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item22").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:8 / span 1; grid-column:3 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item23" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item23',
+    [{
+x: [0.25,1,2,2.75],
+y: [1,0.239766,0.121519,0.0516314],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [0.25,0.25,1,2,2.75],
+y: [0,0.707756,0.877452,0.963458,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Number of vessels fluro',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Number of vessels fluro',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item23").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:9 / span 1; grid-column:1 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item24" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item24',
+    [{
+x: [3.75,5.5,6.75],
+y: [0.19749,0.680634,0.815251],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Pred:1',
+},
+{
+x: [3.75,5.5,6.75],
+y: [0.197999,0.690535,0.815038],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'Label:1',
+},
+{
+x: [3.75,5.5,6.75],
+y: [0.104708,0.147818,0.12013],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'Error rate',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Thallium',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Thallium',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Prediction',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item24").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div><div style='grid-row:10 / span 1; grid-column:1 / span 1;'><div id="chart_8ada_3ddf_6927_87c4_cep_item25" style="display: inline-block;" ></div><script>
+(function() {
+    function user_code(Plotly) {
+        console.log("Running user code");
+        
+  Plotly.newPlot(
+    'chart_8ada_3ddf_6927_87c4_cep_item25',
+    [{
+x: [3.75,5.5,6.75],
+y: [1,0.0291139,0.659804],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'solid',
+  width: 1
+},
+name: 'density',
+},
+{
+x: [3.75,3.75,5.5,6.75],
+y: [0,0.592095,0.609333,1],
+type: 'scatter',
+mode: 'lines',
+line: {
+  dash: 'dot',
+  width: 1
+},
+name: 'cdf',
+},
+],
+    {
+      width: 400,
+      height: 300,
+      title: 'Thallium',
+      showlegend: true,
+      xaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Thallium',
+        },
+      font: {
+        size: 10,
+        },
+      yaxis: {
+        ticks: 'outside',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        title: 'Distribution',
+        },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+      },
+    },
+    {
+      modeBarButtonsToRemove: ['sendDataToCloud'],
+      displaylogo: false,displayModeBar: false,
+    }
+  );
+
+    }
+    function show_error(err) {
+      document.getElementById("chart_8ada_3ddf_6927_87c4_cep_item25").innerHTML = "Cannot load dep: " + err;
+      console.error("Cannot load dep:", err);
+    }
+    if (typeof require !== 'undefined' && typeof requirejs !== 'undefined') {
+        console.log("Use requirejs");
+        if (!requirejs.s.contexts._.config.paths.plotly) {
+            console.log("Load deps");
+            requirejs.config({
+                paths: {
+                    plotly: 'https://www.gstatic.com/external_hosted/plotly/plotly.min',
+                },
+                shim: {
+                  plotly: {
+                    exports: 'Plotly'
+                  }
+                }
+            });
+        }
+        require(['plotly'], user_code, show_error);
+    } else {
+        console.log("Use script'src");
+        if (typeof Plotly !== 'undefined') {
+            user_code(Plotly);
+        } else {
+            console.log("Load dep");
+            var script = document.createElement('script');
+            script.src = "https://www.gstatic.com/external_hosted/plotly/plotly.min.js";
+            script.async = true;
+            script.onload = function() {
+                user_code(Plotly);
+            };
+            script.onerror = show_error;
+            document.head.appendChild(script);
+        }
+    }
+})();
+</script></div></div></div><div id="8ada-3ddf-6927-87c4_body_pva" class="tab_content"><p><a target="_blank" href="https://ydf.readthedocs.io/en/latest/cli_user_manual#variable-importances">Variable importances</a> measure the importance of an input feature for a model.</p><div id="8ada-3ddf-6927-87c4_variable_importance_vi" class="variable_importance"><select onchange="ydfShowVariableImportance('8ada-3ddf-6927-87c4_variable_importance_vi')"><option value="MEAN_DECREASE_IN_ACCURACY">MEAN_DECREASE_IN_ACCURACY</option><option value="MEAN_DECREASE_IN_AP_1_VS_OTHERS">MEAN_DECREASE_IN_AP_1_VS_OTHERS</option><option value="MEAN_DECREASE_IN_AUC_1_VS_OTHERS">MEAN_DECREASE_IN_AUC_1_VS_OTHERS</option><option value="MEAN_DECREASE_IN_PRAUC_1_VS_OTHERS">MEAN_DECREASE_IN_PRAUC_1_VS_OTHERS</option><option value="SHAP_VALUE">SHAP_VALUE</option><option value="[In model] INV_MEAN_MIN_DEPTH">[In model] INV_MEAN_MIN_DEPTH</option><option value="[In model] NUM_AS_ROOT">[In model] NUM_AS_ROOT</option><option value="[In model] NUM_NODES">[In model] NUM_NODES</option><option value="[In model] SUM_SCORE">[In model] SUM_SCORE</option></select><div id="8ada-3ddf-6927-87c4_variable_importance_vi_body_MEAN_DECREASE_IN_ACCURACY" class="content selected"><pre class="ydf_pre">    1.                &quot;Thallium&quot;  0.044923 ################
+    2.                  &quot;Max HR&quot;  0.038550 #############
+    3.         &quot;Chest pain type&quot;  0.032410 ###########
+    4. &quot;Number of vessels fluro&quot;  0.017937 ######
+    5.         &quot;Exercise angina&quot;  0.010108 ###
+    6.           &quot;ST depression&quot;  0.008354 ##
+    7.             &quot;Slope of ST&quot;  0.008259 ##
+    8.                     &quot;Sex&quot;  0.007242 ##
+    9.                     &quot;Age&quot;  0.005160 #
+   10.             &quot;EKG results&quot;  0.001626 
+   11.             &quot;Cholesterol&quot;  0.001229 
+   12.                      &quot;BP&quot;  0.000874 
+   13.            &quot;FBS over 120&quot;  0.000042 
+</pre></div><div id="8ada-3ddf-6927-87c4_variable_importance_vi_body_MEAN_DECREASE_IN_AP_1_VS_OTHERS" class="content"><pre class="ydf_pre">    1.                &quot;Thallium&quot;  0.036010 ################
+    2.                  &quot;Max HR&quot;  0.035409 ###############
+    3.         &quot;Chest pain type&quot;  0.027816 ############
+    4. &quot;Number of vessels fluro&quot;  0.018266 ########
+    5.         &quot;Exercise angina&quot;  0.010302 ####
+    6.           &quot;ST depression&quot;  0.007328 ###
+    7.             &quot;Slope of ST&quot;  0.006790 ###
+    8.                     &quot;Sex&quot;  0.006028 ##
+    9.                     &quot;Age&quot;  0.004059 #
+   10.             &quot;EKG results&quot;  0.001469 
+   11.             &quot;Cholesterol&quot;  0.000973 
+   12.                      &quot;BP&quot;  0.000338 
+   13.            &quot;FBS over 120&quot;  0.000018 
+</pre></div><div id="8ada-3ddf-6927-87c4_variable_importance_vi_body_MEAN_DECREASE_IN_AUC_1_VS_OTHERS" class="content"><pre class="ydf_pre">    1.                &quot;Thallium&quot;  0.035354 ################
+    2.                  &quot;Max HR&quot;  0.028994 #############
+    3.         &quot;Chest pain type&quot;  0.026837 ############
+    4. &quot;Number of vessels fluro&quot;  0.013138 #####
+    5.         &quot;Exercise angina&quot;  0.007660 ###
+    6.                     &quot;Sex&quot;  0.006602 ##
+    7.             &quot;Slope of ST&quot;  0.005916 ##
+    8.           &quot;ST depression&quot;  0.005638 ##
+    9.                     &quot;Age&quot;  0.004030 #
+   10.             &quot;EKG results&quot;  0.001331 
+   11.             &quot;Cholesterol&quot;  0.000931 
+   12.                      &quot;BP&quot;  0.000283 
+   13.            &quot;FBS over 120&quot;  0.000016 
+</pre></div><div id="8ada-3ddf-6927-87c4_variable_importance_vi_body_MEAN_DECREASE_IN_PRAUC_1_VS_OTHERS" class="content"><pre class="ydf_pre">    1.                &quot;Thallium&quot;  0.036009 ################
+    2.                  &quot;Max HR&quot;  0.035408 ###############
+    3.         &quot;Chest pain type&quot;  0.027815 ############
+    4. &quot;Number of vessels fluro&quot;  0.018266 ########
+    5.         &quot;Exercise angina&quot;  0.010302 ####
+    6.           &quot;ST depression&quot;  0.007328 ###
+    7.             &quot;Slope of ST&quot;  0.006789 ###
+    8.                     &quot;Sex&quot;  0.006028 ##
+    9.                     &quot;Age&quot;  0.004059 #
+   10.             &quot;EKG results&quot;  0.001469 
+   11.             &quot;Cholesterol&quot;  0.000973 
+   12.                      &quot;BP&quot;  0.000338 
+   13.            &quot;FBS over 120&quot;  0.000018 
+</pre></div><div id="8ada-3ddf-6927-87c4_variable_importance_vi_body_SHAP_VALUE" class="content"><pre class="ydf_pre">    1.                &quot;Thallium&quot;  1.184117 ################
+    2.         &quot;Chest pain type&quot;  0.945952 ############
+    3.                  &quot;Max HR&quot;  0.654985 ########
+    4. &quot;Number of vessels fluro&quot;  0.571283 #######
+    5.         &quot;Exercise angina&quot;  0.475969 ######
+    6.             &quot;Slope of ST&quot;  0.421149 #####
+    7.                     &quot;Sex&quot;  0.404979 #####
+    8.           &quot;ST depression&quot;  0.343041 ####
+    9.                     &quot;Age&quot;  0.299090 ###
+   10.             &quot;EKG results&quot;  0.188824 ##
+   11.             &quot;Cholesterol&quot;  0.131084 #
+   12.                      &quot;BP&quot;  0.060808 
+   13.            &quot;FBS over 120&quot;  0.007042 
+</pre></div><div id="8ada-3ddf-6927-87c4_variable_importance_vi_body_[In model] INV_MEAN_MIN_DEPTH" class="content"><pre class="ydf_pre">    1.                  &quot;Max HR&quot;  0.281641 ################
+    2.             &quot;Cholesterol&quot;  0.215375 ######
+    3.                     &quot;Age&quot;  0.211179 #####
+    4.         &quot;Chest pain type&quot;  0.204941 ####
+    5.                &quot;Thallium&quot;  0.202538 ####
+    6.           &quot;ST depression&quot;  0.201932 ####
+    7. &quot;Number of vessels fluro&quot;  0.194174 ###
+    8.                      &quot;BP&quot;  0.191757 ###
+    9.         &quot;Exercise angina&quot;  0.188193 ##
+   10.             &quot;Slope of ST&quot;  0.185194 ##
+   11.                     &quot;Sex&quot;  0.184868 ##
+   12.             &quot;EKG results&quot;  0.179440 #
+   13.            &quot;FBS over 120&quot;  0.170769 
+</pre></div><div id="8ada-3ddf-6927-87c4_variable_importance_vi_body_[In model] NUM_AS_ROOT" class="content"><pre class="ydf_pre">    1.                  &quot;Max HR&quot; 59.000000 ################
+    2.             &quot;Cholesterol&quot; 32.000000 #######
+    3.                &quot;Thallium&quot; 31.000000 ######
+    4.         &quot;Chest pain type&quot; 26.000000 #####
+    5.         &quot;Exercise angina&quot; 23.000000 ####
+    6.                     &quot;Sex&quot; 16.000000 #
+    7.             &quot;Slope of ST&quot; 16.000000 #
+    8. &quot;Number of vessels fluro&quot; 15.000000 #
+    9.                     &quot;Age&quot; 13.000000 
+   10.             &quot;EKG results&quot; 12.000000 
+   11.           &quot;ST depression&quot; 12.000000 
+   12.                      &quot;BP&quot; 11.000000 
+</pre></div><div id="8ada-3ddf-6927-87c4_variable_importance_vi_body_[In model] NUM_NODES" class="content"><pre class="ydf_pre">    1.                  &quot;Max HR&quot; 1873.000000 ################
+    2.             &quot;Cholesterol&quot; 1229.000000 ##########
+    3.                     &quot;Age&quot; 1101.000000 #########
+    4.                      &quot;BP&quot; 754.000000 ######
+    5.           &quot;ST depression&quot; 739.000000 ######
+    6.         &quot;Chest pain type&quot; 514.000000 ####
+    7.                &quot;Thallium&quot; 442.000000 ###
+    8. &quot;Number of vessels fluro&quot; 370.000000 ##
+    9.                     &quot;Sex&quot; 229.000000 #
+   10.             &quot;Slope of ST&quot; 229.000000 #
+   11.         &quot;Exercise angina&quot; 198.000000 #
+   12.             &quot;EKG results&quot; 168.000000 #
+   13.            &quot;FBS over 120&quot; 48.000000 
+</pre></div><div id="8ada-3ddf-6927-87c4_variable_importance_vi_body_[In model] SUM_SCORE" class="content"><pre class="ydf_pre">    1.                &quot;Thallium&quot; 188416.008267 ################
+    2.         &quot;Chest pain type&quot; 58599.238112 ####
+    3.                  &quot;Max HR&quot; 28295.500416 ##
+    4. &quot;Number of vessels fluro&quot; 24341.471314 ##
+    5.         &quot;Exercise angina&quot; 15684.554906 #
+    6.             &quot;Slope of ST&quot; 14209.880612 #
+    7.           &quot;ST depression&quot; 13285.593152 #
+    8.                     &quot;Sex&quot; 7746.039583 
+    9.                     &quot;Age&quot; 3756.325263 
+   10.             &quot;EKG results&quot; 1207.503585 
+   11.             &quot;Cholesterol&quot; 1038.230790 
+   12.                      &quot;BP&quot; 410.451689 
+   13.            &quot;FBS over 120&quot; 19.535723 
+</pre></div></div></div></div></div>
